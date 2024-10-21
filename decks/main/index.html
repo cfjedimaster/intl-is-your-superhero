@@ -25,10 +25,10 @@
 		<div class="reveal">
 			<div class="slides">
 
-				<section>
-					<h1>Intl Is Your Superhero</h1>
+				<section data-background="img/sh1.jpg">
+					<h2 style="background-color: rgba(192, 192, 192, 0.6); color: #000000">Intl Is<br/>Your Superhero</h2>
 				</section>
-				
+
 				<section>
 				<div class="twocol">
 				<div>
@@ -38,7 +38,6 @@
 					<li>Senior Developer Evangelist for Adobe</li>
 					<li>🕸️ raymondcamden.com</li>
 					<li>✉️ raymondcamden@gmail.com</li>
-					<li>Former ColdFusion Jedi</li>
 					</ul>
 				</div>
 				<div>
@@ -49,10 +48,68 @@
 
 				<section>
 					<img src="img/qr.png">
-					<a href="https://github.com/cfjedimaster/gemini-ai-preso" target="_new">github.com/cfjedimaster/gemini-ai-preso</a>
+					<a href="https://github.com/cfjedimaster/intl-is-your-superhero" target="_new">github.com/cfjedimaster/intl-is-your-superhero</a>
+				</section>
+
+				<section>
+				<h2>Agenda</h2>
+				<ul>
+				<li class="fragment">What (It is...)</li>
+				<li class="fragment">What (It isn't...)</li>
+				<li class="fragment">Lots and lots of demos</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>What is it?</h2>
+				<ul>
+				<li class="fragment">Namespace object (fancy way of saying it compromises multiple functions)</li>
+				<li class="fragment">Supports internationalization of numbers and dates</li>
+				<li class="fragment">Supports locale specific string comparison</li>
+				<li class="fragment">And more!</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>What is it?</h2>
+				<ul>
+				<li class="fragment">Spec: <a href="https://tc39.es/ecma402/#intl-object" target="_blank">The Intl Object</a></li>
+				<li class="fragment">Very well supported...</li>
+				<li class="fragment">With some exceptions on Firefox</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>What it is not!</h2>
+				<ul>
+				<li class="fragment">Translation</li>
+				<li class="fragment">Internationalization of your UI</li>
+				<li class="fragment">Currency exchange</li>
+				</ul>
 				</section>
 			</div>
 		</div>
+
+		<!--
+Notes:
+what language the user prefer?
+navigator.language and languages
+dont fucking use IP
+
+DateTime formatting
+RelativeTime
+Number formatting
+currency formatting
+
+Duration format
+List FOrmat
+PluralRules
+Segmentor
+
+Skipping: 
+	Collator
+	Display Name
+		-->
 
 		<script src="dist/reveal.js"></script>
 		<script src="plugin/notes/notes.js"></script>
@@ -64,7 +121,7 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
-
+				slideNumber: "c/t",
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
 			});
