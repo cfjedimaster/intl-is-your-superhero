@@ -87,6 +87,157 @@
 				<li class="fragment">Currency exchange</li>
 				</ul>
 				</section>
+
+				<section>
+				<h2>General Syntax</h2>
+				<ul>
+				<li class="fragment">Make a new instance of the object: new Intl.something()</li>
+				<li class="fragment">Default locale is user's locale, or specify: new Intl.sometnhing('en-US')</li>
+				<li class="fragment">Locales can be a string ('en-US') or an object (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale" target="_blank">Intl.Locale</a>) </li>
+				<li class="fragment">Browser tries it's best based on the input</li>
+				<li class="fragment">Run a method, typically <code>format</code></li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>The User's Language</h2>
+				<ul>
+				<li class="fragment"><code>navigator.language</code></li>
+				<li class="fragment"><code>navigator.languages</code></li>
+				<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language" target="_blank"><code>Accept-Language</code></a> <sup>*</sup></li>
+				</ul>
+				<p class="fragment">
+				* Client-side JavaScript can't read HTTP request headers.
+				</p>
+				</section>
+
+				<section>
+<p class="codepen" data-height="300" data-theme-id="42685" data-default-tab="js,result" data-slug-hash="ZEgXBRo" data-pen-title="navigator.language(s)" data-editable="true" data-user="cfjedimaster" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/ZEgXBRo">
+  navigator.language(s)</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+				</section>
+
+				<section>
+				<h2>What Not To Do</h2>
+				<ul>
+				<li class="fragment">Use the user's IP location</li>
+				<li class="fragment">Force them into one language</li>
+				</ul>
+				</section>
+				
+
+				<section data-background="img/sh_dates.jpg">
+					<h2 style="background-color: rgba(192, 192, 192, 0.6); color: #000000">Date Formatting</h2>
+				</section>
+
+				<section>
+				<h2>Date Formatting</h2>
+				<ul>
+				<li class="fragment"><code>Intl.DateTimeFormat</code></li>
+				<li class="fragment">Can format to dates, times, or both</li>
+				<li class="fragment">Multiple "baked in" styles</li>
+				<li class="fragment">Can format "ranges"</li>
+				<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat#browser_compatibility" target="_blank">Compatability Report</a></li>
+				</ul>
+				</section>
+
+				<section data-execute="let now = new Date();new Intl.DateTimeFormat().format(now);">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+				let now = new Date();
+
+				// defaults for everything
+				console.log(new Intl.DateTimeFormat().format(now));
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-execute="let now = new Date();new Intl.DateTimeFormat('en-GB').format(now);">
+				<h2>Example (United Kingdom)</h2>
+				<pre><code class="language-js" data-trim>
+				let now = new Date();
+
+				console.log(new Intl.DateTimeFormat('en-GB').format(now));
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-execute="let now = new Date();let tomorrow =  new Date().setDate(now.getDate() + 1);let formatter = new Intl.DateTimeFormat();('Today: ' + formatter.format(now) + ' - Tomorrow: ' + formatter.format(tomorrow));">
+				<h2>Example (Multiple)</h2>
+				<pre><code class="language-js" data-trim>
+				let now = new Date();
+				let tomorrow = new Date().setDate(now.getDate() + 1);
+
+				let formatter = new Intl.DateTimeFormat();
+				console.log(`
+				Today: ${formatter.format(now)} - 
+				Tomorrow: ${formatter.format(tomorrow)}
+				`);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section>
+				<h2>Date Formatting Options (some)</h2>
+				<ul>
+				<li class="fragment">Locale</li>
+				<li class="fragment">Calendar (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getCalendars#supported_calendar_types" target="_blank">List</a>) and Numbering System (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/getNumberingSystems#supported_numbering_system_types" target="_blank">List</a>)</li>
+				<li class="fragment">24 hour (overrides locale)</li>
+				<li class="fragment">Timezone</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Date Formatting Options (even more...)</h2>
+				<ul>
+				<li class="fragment">weekday, era, year, month, day, day period</li>
+				<li class="fragment">hour, minute, second, fractionalSecondDigits</li>
+				<li class="fragment">Styles: full, long, medium, short</li>
+				</ul>
+				</section>
+
+				<section data-execute="let now = new Date();let formatter = new Intl.DateTimeFormat('en-US', { dateStyle:'long', timeStyle:'long'});(formatter.format(now));">
+				<h2>Example (Long)</h2>
+				<pre><code class="language-js" data-trim>
+				let now = new Date();
+
+				let formatter = new Intl.DateTimeFormat('en-US', {
+					dateStyle:'long', 
+					timeStyle:'long'
+				});
+
+				console.log(formatter.format(now));
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-execute="let now = new Date();let formatter = new Intl.DateTimeFormat('en-US', { dateStyle:'short', timeStyle:'short'});(formatter.format(now));">
+				<h2>Example (Short)</h2>
+				<pre><code class="language-js" data-trim>
+				let now = new Date();
+
+				let formatter = new Intl.DateTimeFormat('en-US', {
+					dateStyle:'short', 
+					timeStyle:'short'
+				});
+
+				console.log(formatter.format(now));
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section>
+<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="js,result" data-slug-hash="jOgGyKX" data-pen-title="navigator.language(s)" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/jOgGyKX">
+  navigator.language(s)</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+				</section>
+
 			</div>
 		</div>
 
@@ -109,6 +260,9 @@ Segmentor
 Skipping: 
 	Collator
 	Display Name
+
+
+https://www.intl-explorer.com/
 		-->
 
 		<script src="dist/reveal.js"></script>
@@ -124,6 +278,16 @@ Skipping:
 				slideNumber: "c/t",
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+
+			Reveal.on('slidechanged', (event) => {
+				if(event.currentSlide.dataset.execute) {
+
+					console.log('going to eval', event.currentSlide.dataset.execute);
+					let result = eval(event.currentSlide.dataset.execute);
+					let $result = event.currentSlide.querySelector('p.result');
+					$result.innerHTML = result;
+				}
 			});
 		</script>
 	</body>
