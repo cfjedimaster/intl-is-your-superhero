@@ -65,6 +65,7 @@
 				<ul>
 				<li class="fragment">Namespace object (fancy way of saying it compromises multiple functions)</li>
 				<li class="fragment">Supports internationalization of numbers and dates</li>
+				<li class="fragment">Supports internationalization of string related features</li>
 				<li class="fragment">Supports locale specific string comparison</li>
 				<li class="fragment">And more!</li>
 				</ul>
@@ -238,29 +239,124 @@
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 				</section>
 
+				<section data-execute="let now = new Date();let formatter = new Intl.DateTimeFormat('en-US',{
+					year:'2-digit',
+					month:'short',
+					day:'2-digit',
+					dayPeriod:'long'
+				});(formatter.format(now));">
+				<h2>Example (Specific)</h2>
+				<pre><code class="language-js" data-trim>
+				let now = new Date();
+
+				let formatter = new Intl.DateTimeFormat('en-US', {
+					year:'2-digit',
+					month:'short',
+					day:'2-digit',
+					dayPeriod:'long'
+				});
+
+				console.log(formatter.format(now));
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section>
+				<h2>Date Range Formatting</h2>
+				<ul>
+				<li class="fragment">Takes 2 dates (technically one is ok)</li>
+				<li class="fragment">Takes formatting options</li>
+				<li class="fragment">Displays the range between them</li>
+				<li class="fragment">Intelligently!</li>
+				</ul>
+				</section>
+
+				<section>
+				<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="result" data-slug-hash="Yzmrbvm" data-pen-title="DateTime Formatting Options" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/Yzmrbvm">
+  DateTime Formatting Options</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+				</section>
+
+				<section>
+				<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat" target="_blank">Intl.DateTimeFormat Docs</a>
+				</section>
+
+				<section>
+				<h2>Relative Date Formatting</h2>
+				<ul>
+				<li class="fragment">Responsible for describing a time in the past or future</li>
+				<li class="fragment">"in X so and so" or "X day ago"</li>
+				<li class="fragment">Supports number and unit (ie day or minute or so forth)</li>
+				<li class="fragment">Units: year, quarter, month, week, day, hour, minute, second</li>
+				<li class="fragment">Supports turning off numeric answers (0 minutes versus now)</li>
+				</ul>
+				</section>
+
+				<section data-execute="let formatter = new Intl.RelativeTimeFormat('en', {
+  style:'long'
+});
+
+(formatter.format(-1,'day')+'<br>'+formatter.format(1,'minute'))">
+				<h2>Example (Specific)</h2>
+				<pre><code class="language-js" data-trim>
+let formatter = new Intl.RelativeTimeFormat('en', {
+  style:"long"
+});
+
+console.log(formatter.format(-1,"day"));
+console.log(formatter.format(1,"minute"));
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section>
+<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="result" data-slug-hash="gOVGNJo" data-pen-title="DateTime Range Example" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/gOVGNJo">
+  DateTime Range Example</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>				
+				</section>
+
+				<section>
+				<h2>Cool... but...</h2>
+				<p class="fragment">
+				What do you pick for the units?
+				</p>
+				<p class="fragment">
+				What number do you use?
+				</p>
+				</section>
+
+				<section>
+					<p>
+					<a href="https://www.raymondcamden.com/2024/03/07/using-intlrelativetimeformat-for-localized-relative-timings" target="_blank">Using Intl.RelativeTimeFormat for Localized Relative Timings</a>
+					</p>
+					<p class="fragment">
+					<img src="https://static.raymondcamden.com/images/2024/03/itdepends.jpg" width="200">
+					</p>
+				</section>
+
 			</div>
 		</div>
 
 		<!--
 Notes:
-what language the user prefer?
-navigator.language and languages
-dont fucking use IP
 
-DateTime formatting
-RelativeTime
+Duration format
 Number formatting
 currency formatting
 
-Duration format
-List FOrmat
+List Format
 PluralRules
 Segmentor
 
 Skipping: 
 	Collator
 	Display Name
-
 
 https://www.intl-explorer.com/
 		-->
