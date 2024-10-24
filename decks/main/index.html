@@ -141,7 +141,6 @@
 				<li class="fragment">Can format to dates, times, or both</li>
 				<li class="fragment">Multiple "baked in" styles</li>
 				<li class="fragment">Can format "ranges"</li>
-				<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat#browser_compatibility" target="_blank">Compatability Report</a></li>
 				</ul>
 				</section>
 
@@ -287,6 +286,7 @@
 				<section>
 				<h2>Relative Date Formatting</h2>
 				<ul>
+				<li class="fragment"><code>Intl.RelativeTimeFormat</code></li>
 				<li class="fragment">Responsible for describing a time in the past or future</li>
 				<li class="fragment">"in X so and so" or "X day ago"</li>
 				<li class="fragment">Supports number and unit (ie day or minute or so forth)</li>
@@ -340,15 +340,101 @@ console.log(formatter.format(1,"minute"));
 					</p>
 				</section>
 
+				<section>
+				<h2>Duration Date Formatting</h2>
+				<ul>
+				<li class="fragment"><code>Intl.DurationFormat</code></li>
+				<li class="fragment">Responsible for describing a span of time</li>
+				<li class="fragment">Can specify a specific amount of monnths, weeks, days, hours, minutes, seconds, milliseconds, microsends, and nanoseconds</li>
+				<li class="fragment">Can specify styles long, short, narrow, and "digital"</li>
+				<li class="fragment">Can specify formatting for parts (years, etc)</li>
+				<li class="fragment">Can specify to show years, months, weeks, etc always even if the duration doesn't need it</li>
+				<li class="fragment"><span style="color:red">Not supported in Firefox</span></li>
+				</ul>
+				</section>
+
+				<section data-execute="
+(new Intl.DurationFormat('en', { style:'long' }).format({ hours: 28, minutes: 19 }));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let duration = {
+	hours: 28, 
+	minutes: 19
+}
+
+console.log(
+	new Intl.DurationFormat('en', { style:"long" }).format(duration)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-execute="
+(new Intl.DurationFormat('en', { style:'long', daysDisplay:'always'}).format({ hours: 28, minutes: 19 }));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let duration = {
+	hours: 28, 
+	minutes: 19
+}
+
+console.log(
+	new Intl.DurationFormat('en', 
+	{ style:"long", daysDisplay:'always' }).format(duration)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+
+				<section data-execute="
+(new Intl.DurationFormat('es', { style:'long' }).format({ hours: 28, minutes: 19 }));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let duration = {
+	hours: 28, 
+	minutes: 19
+}
+
+console.log(
+	new Intl.DurationFormat('es', { style:"long" }).format(duration)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-background="img/sh_numbers.jpg">
+					<h2 style="background-color: rgba(192, 192, 192, 0.6); color: #000000">Number Formatting</h2>
+				</section>
+
+				<section>
+				<h2></h2>
+				<ul>
+				<li class="fragment"><code>Intl.NumberFormat</code></li>
+				<li class="fragment">Formats numbers and currencies</li>
+				<li class="fragment">Can support numbers larger than MAX INT</li>
+				<li class="fragment">Can support "units" (i.e., X gallons)</li>
+				<li class="fragment">Can simplify (i.e. 100 millions or 1000M)</li>
+				<li class="fragment">Multiple "baked in" styles</li>
+				<li class="fragment">Can format "ranges"</li>
+				</ul>
+				</section>
+
 			</div>
 		</div>
 
 		<!--
+		Ray, if you do the blog post, add it here as a link.
+		-->
+
+		<!--
 Notes:
 
-Duration format
 Number formatting
-currency formatting
+	mention the es6 _ thing
 
 List Format
 PluralRules
