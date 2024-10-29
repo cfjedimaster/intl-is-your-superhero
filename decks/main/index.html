@@ -93,7 +93,7 @@
 				<h2>General Syntax</h2>
 				<ul>
 				<li class="fragment">Make a new instance of the object: new Intl.something()</li>
-				<li class="fragment">Default locale is user's locale, or specify: new Intl.sometnhing('en-US')</li>
+				<li class="fragment">Default locale is user's locale, or specify: new Intl.something('en-US')</li>
 				<li class="fragment">Locales can be a string ('en-US') or an object (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale" target="_blank">Intl.Locale</a>) </li>
 				<li class="fragment">Browser tries it's best based on the input</li>
 				<li class="fragment">Run a method, typically <code>format</code></li>
@@ -341,11 +341,15 @@ console.log(formatter.format(1,"minute"));
 				</section>
 
 				<section>
+				<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat" target="_blank">Intl.RelativeTimeFormat Docs</a>
+				</section>
+
+				<section>
 				<h2>Duration Date Formatting</h2>
 				<ul>
 				<li class="fragment"><code>Intl.DurationFormat</code></li>
 				<li class="fragment">Responsible for describing a span of time</li>
-				<li class="fragment">Can specify a specific amount of monnths, weeks, days, hours, minutes, seconds, milliseconds, microsends, and nanoseconds</li>
+				<li class="fragment">Can specify a specific amount of months, weeks, days, hours, minutes, seconds, milliseconds, microsends, and nanoseconds</li>
 				<li class="fragment">Can specify styles long, short, narrow, and "digital"</li>
 				<li class="fragment">Can specify formatting for parts (years, etc)</li>
 				<li class="fragment">Can specify to show years, months, weeks, etc always even if the duration doesn't need it</li>
@@ -406,35 +410,232 @@ console.log(
 				<p class="fragment result"></p>
 				</section>
 
+				<section>
+<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="result" data-slug-hash="bGXvrBr" data-pen-title="Duration Example" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/bGXvrBr">
+  Duration Example</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>				
+				</section>
+
 				<section data-background="img/sh_numbers.jpg">
 					<h2 style="background-color: rgba(192, 192, 192, 0.6); color: #000000">Number Formatting</h2>
 				</section>
 
 				<section>
-				<h2></h2>
+				<h2>Number Formatting</h2>
 				<ul>
 				<li class="fragment"><code>Intl.NumberFormat</code></li>
 				<li class="fragment">Formats numbers and currencies</li>
 				<li class="fragment">Can support numbers larger than MAX INT</li>
 				<li class="fragment">Can support "units" (i.e., X gallons)</li>
-				<li class="fragment">Can simplify (i.e. 100 millions or 1000M)</li>
+				<li class="fragment">Can simplify (i.e. 100 millions or 100M)</li>
 				<li class="fragment">Multiple "baked in" styles</li>
-				<li class="fragment">Can format "ranges"</li>
+				<li class="fragment">Can format ranges</li>
 				</ul>
 				</section>
 
+				<section data-execute="
+(new Intl.NumberFormat('en', { style:'decimal' }).format(5494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+// modern browsers let you use _ to help read large numbers
+// info: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#numeric_separators
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('en', { style:"decimal" }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-execute="
+(new Intl.NumberFormat('fr', { style:'decimal' }).format(5494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('fr', { style:"decimal" }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<!--
+				Title text here taken from docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat
+				-->
+				<section>
+				<h2>Decimal (Regular number) Options</h2>
+				<ul>
+				<li class="fragment" title="The minimum number of integer digits to use. A value with a smaller number of integer digits than this number will be left-padded with zeros">minimumIntegerDigits</li>
+				<li class="fragment" title="Range 0 to 100, numbers after decimal">minimumFractionDigits and maximumFractionDigits</li>
+				<li class="fragment">minimumSignificantDigits and maximumSignificantDigits</li>
+				<li class="fragment" title="auto, morePrecision, lessPrecision">roundingPriority, roundingIncrement, roundingMode</li>
+				<li class="fragment">trailingZero</li>
+				<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat" target="_new">Docs</a></li>
+				</ul>
+				</section>				
+
+				<section data-execute="
+(new Intl.NumberFormat('en', { minimumIntegerDigits:2 }).format(1));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 1;
+
+console.log(
+	new Intl.NumberFormat('en', { minimumIntegerDigits:2 }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-execute="
+(new Intl.NumberFormat('en', { maximumSignificantDigits:4 }).format(5494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('en', { maximumSignificantDigits:4 }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+
+				<section data-execute="
+(new Intl.NumberFormat('en', { notation:'compact' }).format(15494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('en', { notation:'compact' }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-execute="
+(new Intl.NumberFormat('en', { notation:'compact', compactDisplay:'long' }).format(15494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('en', 
+		{ notation:'compact', compactDisplay:'long' }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section>
+				<h2>Formatting Ranges</h2>
+				<ul>
+				<li class="fragment">Still uses formatting options</li>
+				<li class="fragment">If the two values are close, will use an 'approx equals' value</li>
+				</ul>
+				</section>
+
+				<section>
+<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="result" data-slug-hash="wvVmmdB" data-pen-title="Format Range for Numbers" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/wvVmmdB">
+  Format Range for Numbers</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>				
+				</section>
+
+				<section>
+				<h2>Currency</h2>
+				<ul>
+				<li class="fragment">Formats a number in a particular currency</li>
+				<li class="fragment">Currency != Locale</li>
+				<li class="fragment">"In the French locale, format XXXXXXX USD"</li>
+				</ul>
+				</section>
+
+				<section data-execute="
+(new Intl.NumberFormat('en', { style:'currency', currency:'USD' }).format(5494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('en', 
+	{ style:"currency", currency:"USD" }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>		
+
+				<section data-execute="
+(new Intl.NumberFormat('fr', { style:'currency', currency:'USD' }).format(5494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('fr', 
+	{ style:"currency", currency:"USD" }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>	
+
+				<section data-execute="
+(new Intl.NumberFormat('en', { style:'currency', currency:'USD', notation:'compact' }).format(5494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('en', 
+	{ style:"currency", currency:"USD", notation:"compact" }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+
+				<section data-execute="
+(new Intl.NumberFormat('en', { style:'currency', currency:'USD', notation:'compact', currencyDisplay:'name' }).format(5494391));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = 544_194_391;
+
+console.log(
+	new Intl.NumberFormat('en', 
+	{ 
+		style:"currency", currency:"USD", 
+		notation:"compact", currencyDisplay:'name' }).format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
 			</div>
 		</div>
 
-		<!--
-		Ray, if you do the blog post, add it here as a link.
-		-->
 
 		<!--
 Notes:
 
-Number formatting
-	mention the es6 _ thing
+currency, be sure to show'name' option 
+units?
 
 List Format
 PluralRules
