@@ -113,7 +113,7 @@
 				</section>
 
 				<section>
-<p class="codepen" data-height="300" data-theme-id="42685" data-default-tab="js,result" data-slug-hash="ZEgXBRo" data-pen-title="navigator.language(s)" data-editable="true" data-user="cfjedimaster" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="js,result" data-slug-hash="ZEgXBRo" data-pen-title="navigator.language(s)" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
   <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/ZEgXBRo">
   navigator.language(s)</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
@@ -140,7 +140,7 @@
 				<li class="fragment"><code>Intl.DateTimeFormat</code></li>
 				<li class="fragment">Can format to dates, times, or both</li>
 				<li class="fragment">Multiple "baked in" styles</li>
-				<li class="fragment">Can format "ranges"</li>
+				<li class="fragment">Can format ranges</li>
 				</ul>
 				</section>
 
@@ -627,6 +627,119 @@ console.log(
 				</code></pre>
 				<p class="fragment result"></p>
 				</section>
+
+				<section data-background="img/strings.jpg">
+					<h2 style="background-color: rgba(192, 192, 192, 0.6); color: #000000">String Stuff</h2>
+				</section>
+
+				<section>
+				<h2>List Formatting</h2>
+				<ul>
+				<li class="fragment"><code>Intl.ListFormat</code></li>
+				<li class="fragment">Formats a list of items</li>
+				<li class="fragment">Supports AND/OR ("X, Y, and Z" vs "X, Y, or Z")</li>
+				<li class="fragment">Supports no AND/OR ("X, Y, Z")</li>
+				</ul>
+				</section>
+
+				<section data-execute="
+(new Intl.ListFormat('en').format(['cats','dogs','books']));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = ['cats','dogs','books'];
+
+console.log(
+	new Intl.ListFormat('en').format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section data-execute="
+(new Intl.ListFormat('es').format(['cats','dogs','books']));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let input = ['cats','dogs','books'];
+
+console.log(
+	new Intl.ListFormat('es').format(input)
+);
+				</code></pre>
+				<p class="fragment result"></p>
+				</section>
+
+				<section>
+<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="result" data-slug-hash="abeRzrY" data-pen-title="ListFormat" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/abeRzrY">
+  ListFormat</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>				
+				</section>
+
+				<section>
+				<h2>Plural Formatting</h2>
+				<ul>
+				<li class="fragment">Intl.PluralRules</li>
+				<li class="fragment">Helps with describing the plural of something and the other of something</li>
+				<li class="fragment">API tells you the form based on the number</li>
+				<li class="fragment">An example, given 0, 1, or 2 cats, we say "0 cats", "1 cat", "2 cats"</li>
+				<li class="fragment">This API will tell you which to use, but won't 'write' the plural form</li>
+				<li class="fragment">Returns: zero, one, two, few, many, or other</li>
+				</ul>
+				</section>
+
+				<section>
+				<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="result" data-slug-hash="wvVYagW" data-pen-title="PluralRules" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/wvVYagW">
+  PluralRules</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+				</section>
+
+				<section>
+				<h2>Segmenting Strings</h2>
+				<ul>
+				<li class="fragment">Intl.Segmentor</li>
+				<li class="fragment">Locale specific way to break a string into parts</li>
+				<li class="fragment">Graphemes, words, sentences</li>
+				<li class="fragment">Returns an iterator</li>
+				</ul>
+				</section>
+
+				<section>
+				<h2>Why?</h2>
+				<blockquote>
+If we were to use String.prototype.split(" ") to segment a text in words, we would not get the correct result if the locale of the text does not use whitespaces between words (which is the case for Japanese, Chinese, Thai, Lao, Khmer, Myanmar, etc.).
+				</blockquote>
+				<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter#basic_usage_and_difference_from_string.prototype.split" target="_blank">Source</a></p>
+				</section>
+
+				<section>
+				<p class="codepen" data-height="500" data-theme-id="42685" data-default-tab="result" data-slug-hash="eYqPdwE" data-pen-title="Segmenter" data-editable="true" data-user="cfjedimaster" style="height: 500px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/cfjedimaster/pen/eYqPdwE">
+  Segmenter</a> by Raymond Camden (<a href="https://codepen.io/cfjedimaster">@cfjedimaster</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+				</section>
+
+				<section>
+				<h2>Next Steps</h2>
+				<ul>
+				<li class="fragment"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl" target="_blank">Intl Docs @ MDN</a></li>
+				<li class="fragment"><a href="https://www.intl-explorer.com/" target="_blank">Intl Explorer</a></li>
+				</ul>
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+					<img alt="questions?" src="img/cat_qa.png">
+				</section>
+
 			</div>
 		</div>
 
@@ -634,18 +747,9 @@ console.log(
 		<!--
 Notes:
 
-currency, be sure to show'name' option 
-units?
-
-List Format
-PluralRules
 Segmentor
 
-Skipping: 
-	Collator
-	Display Name
 
-https://www.intl-explorer.com/
 		-->
 
 		<script src="dist/reveal.js"></script>
