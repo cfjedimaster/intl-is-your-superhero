@@ -25,8 +25,8 @@
 		<div class="reveal">
 			<div class="slides">
 
-				<section data-background="img/sh1.jpg">
-					<h2 style="background-color: rgba(192, 192, 192, 0.6); color: #000000">Intl Is<br/>Your Superhero</h2>
+				<section data-background="img/sh2.jpg">
+					<h2 style="background-color: rgba(192, 192, 192, 0.6); color: #000000;">Intl Is<br/>Your Superhero</h2>
 				</section>
 
 				<section>
@@ -496,7 +496,7 @@ console.log(
 				</section>
 
 				<section data-execute="
-(new Intl.NumberFormat('en', { maximumSignificantDigits:4 }).format(5494391));
+(new Intl.NumberFormat('en', { maximumSignificantDigits:4 }).format(544_194_391));
 				">
 				<h2>Example</h2>
 				<pre><code class="language-js" data-trim>
@@ -511,7 +511,7 @@ console.log(
 
 
 				<section data-execute="
-(new Intl.NumberFormat('en', { notation:'compact' }).format(15494391));
+(new Intl.NumberFormat('en', { notation:'compact' }).format(544_194_391));
 				">
 				<h2>Example</h2>
 				<pre><code class="language-js" data-trim>
@@ -525,7 +525,7 @@ console.log(
 				</section>
 
 				<section data-execute="
-(new Intl.NumberFormat('en', { notation:'compact', compactDisplay:'long' }).format(15494391));
+(new Intl.NumberFormat('en', { notation:'compact', compactDisplay:'long' }).format(544_194_391));
 				">
 				<h2>Example</h2>
 				<pre><code class="language-js" data-trim>
@@ -566,7 +566,7 @@ console.log(
 				</section>
 
 				<section data-execute="
-(new Intl.NumberFormat('en', { style:'currency', currency:'USD' }).format(5494391));
+(new Intl.NumberFormat('en', { style:'currency', currency:'USD' }).format(544_194_391));
 				">
 				<h2>Example</h2>
 				<pre><code class="language-js" data-trim>
@@ -581,7 +581,7 @@ console.log(
 				</section>		
 
 				<section data-execute="
-(new Intl.NumberFormat('fr', { style:'currency', currency:'USD' }).format(5494391));
+(new Intl.NumberFormat('fr', { style:'currency', currency:'USD' }).format(544_194_391));
 				">
 				<h2>Example</h2>
 				<pre><code class="language-js" data-trim>
@@ -596,7 +596,7 @@ console.log(
 				</section>	
 
 				<section data-execute="
-(new Intl.NumberFormat('en', { style:'currency', currency:'USD', notation:'compact' }).format(5494391));
+(new Intl.NumberFormat('en', { style:'currency', currency:'USD', notation:'compact' }).format(544_194_391));
 				">
 				<h2>Example</h2>
 				<pre><code class="language-js" data-trim>
@@ -612,7 +612,7 @@ console.log(
 
 
 				<section data-execute="
-(new Intl.NumberFormat('en', { style:'currency', currency:'USD', notation:'compact', currencyDisplay:'name' }).format(5494391));
+(new Intl.NumberFormat('en', { style:'currency', currency:'USD', notation:'compact', currencyDisplay:'name' }).format(544_194_391));
 				">
 				<h2>Example</h2>
 				<pre><code class="language-js" data-trim>
@@ -688,6 +688,7 @@ console.log(
 				<li class="fragment">An example, given 0, 1, or 2 cats, we say "0 cats", "1 cat", "2 cats"</li>
 				<li class="fragment">This API will tell you which to use, but won't 'write' the plural form</li>
 				<li class="fragment">Returns: zero, one, two, few, many, or other</li>
+				<li class="fragment">Uses a <code>select</code> method</li>
 				</ul>
 				</section>
 
