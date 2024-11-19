@@ -544,7 +544,25 @@ console.log(
 				<ul>
 				<li class="fragment">Still uses formatting options</li>
 				<li class="fragment">If the two values are close, will use an 'approx equals' value</li>
+				<li class="fragment"><code>.formatRange()</code></li>
 				</ul>
+				</section>
+
+				<section data-execute="
+(new Intl.NumberFormat('en', { notation:'compact', compactDisplay:'long' }).formatRange(9_000,999_999));
+				">
+				<h2>Example</h2>
+				<pre><code class="language-js" data-trim>
+let a = 9_000;
+let b = 999_999;
+
+console.log(
+	new Intl.NumberFormat('en', 
+		{ notation:'compact', compactDisplay:'long' })
+		.formatRange(a,b)
+);
+				</code></pre>
+				<p class="fragment result"></p>
 				</section>
 
 				<section>
@@ -685,8 +703,8 @@ console.log(
 				<li class="fragment">Intl.PluralRules</li>
 				<li class="fragment">Helps with describing the plural of something and the other of something</li>
 				<li class="fragment">API tells you the form based on the number</li>
-				<li class="fragment">An example, given 0, 1, or 2 cats, we say "0 cats", "1 cat", "2 cats"</li>
-				<li class="fragment">This API will tell you which to use, but won't 'write' the plural form</li>
+				<li class="fragment">An example, given 0, 1, or 2 cats, English speakers say "0 cats", "1 cat", "2 cats"</li>
+				<li class="fragment">This API will tell you which to use, but won't "write" the plural form</li>
 				<li class="fragment">Returns: zero, one, two, few, many, or other</li>
 				<li class="fragment">Uses a <code>select</code> method</li>
 				</ul>
