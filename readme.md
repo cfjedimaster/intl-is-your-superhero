@@ -1,4 +1,4 @@
-# Intl Is Your Superherp
+# Intl Is Your Superhero
 
 This is the repo for the presentation, just slides as the demos are on CodePen. 
 
